@@ -1,0 +1,10 @@
+name = "AbsentTypes"
+uuid = "806a83c1-d09f-449d-ab1d-4e49ad4cc0e9"
+authors = ["CliMA Contributors <clima-software@caltech.edu>"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
