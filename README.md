@@ -1,2 +1,3 @@
-# AbsentTypes.jl
-A small package for defining absent (i.e., null) types and behaviors
+# NullBroadcasts.jl
+
+A small package for defining null broadcasted types and behaviors
