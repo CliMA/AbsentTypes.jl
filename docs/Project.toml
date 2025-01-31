@@ -1,4 +1,4 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 DocumenterCitations = "daee34ce-89f3-4625-b898-19384cb65244"
-AbsentTypes = "806a83c1-d09f-449d-ab1d-4e49ad4cc0e9"
+AbsentTypes = "0d71be07-595a-4f89-9529-4065a4ab43a6"
