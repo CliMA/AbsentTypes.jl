@@ -5,10 +5,13 @@ module NullBroadcasts
 
 A `Base.AbstractBroadcasted` that represents arithmetic object.
 
-An `NullBroadcasted()` can be added to, subtracted from, or multiplied by any value in a
-broadcast expression without incurring a runtime performance penalty.
+An `NullBroadcasted()` can be added to, subtracted from, or multiplied by any
+value in a broadcast expression without incurring a runtime performance
+penalty.
 
-For example, the following rules hold when broadcasting instances of `NullBroadcasted`:
+For example, the following rules hold when broadcasting instances of
+`NullBroadcasted`:
+
 ```
 1 + NullBroadcasted() == 1
 NullBroadcasted() + 1 == 1
@@ -51,9 +54,10 @@ Base.broadcasted(op::typeof(-), a::NullBroadcasted, ::NullBroadcasted) =
     Base.broadcasted(op, a)
 
 Base.broadcasted(op::typeof(+), ::NullBroadcasted, args...) = Base.broadcasted(op, args...)
-Base.broadcasted(op::typeof(+), arg, ::NullBroadcasted) = Base.broadcasted(op, arg)
-Base.broadcasted(op::typeof(+), a::NullBroadcasted, ::NullBroadcasted) =
-    Base.broadcasted(op, a)
+Base.broadcasted(op::typeof(+), arg, ::NullBroadcasted, args...) =
+    Base.broadcasted(op, arg, args...)
+Base.broadcasted(op::typeof(+), a::NullBroadcasted, ::NullBroadcasted, args...) =
+    Base.broadcasted(op, a, args...)
 
 Base.broadcasted(op::typeof(*), ::NullBroadcasted, args...) = NullBroadcasted()
 Base.broadcasted(op::typeof(*), arg, ::NullBroadcasted) = NullBroadcasted()
@@ -61,6 +65,8 @@ Base.broadcasted(op::typeof(*), ::NullBroadcasted, ::NullBroadcasted) = NullBroa
 Base.broadcasted(op::typeof(/), ::NullBroadcasted, args...) = NullBroadcasted()
 Base.broadcasted(op::typeof(/), arg, ::NullBroadcasted) = NullBroadcasted()
 Base.broadcasted(op::typeof(/), ::NullBroadcasted, ::NullBroadcasted) = NullBroadcasted()
+
+Base.broadcasted(op::typeof(identity), a::NullBroadcasted) = a
 
 function skip_materialize(dest, bc::Base.Broadcast.Broadcasted)
     if typeof(bc.f) <: typeof(+) || typeof(bc.f) <: typeof(-)
@@ -77,5 +83,10 @@ function skip_materialize(dest, bc::Base.Broadcast.Broadcasted)
 end
 
 Base.Broadcast.instantiate(bc::Base.Broadcast.Broadcasted{NullBroadcastedStyle}) = x
+
+Base.Broadcast.materialize!(dest, x::NullBroadcasted) =
+    error("NullBroadcasted objects cannot be materialized.")
+Base.Broadcast.materialize(dest, x::NullBroadcasted) =
+    error("NullBroadcasted objects cannot be materialized.")
 
 end # module NullBroadcasts
