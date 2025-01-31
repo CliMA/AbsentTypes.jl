@@ -1,5 +1,5 @@
 import Documenter, DocumenterCitations
-import AbsentTypes
+import NullBroadcasts
 
 bib = DocumenterCitations.CitationBibliography(joinpath(@__DIR__, "refs.bib"))
 
@@ -15,17 +15,17 @@ format = Documenter.HTML(
 
 Documenter.makedocs(;
     plugins = [bib],
-    sitename = "AbsentTypes.jl",
+    sitename = "NullBroadcasts.jl",
     format = format,
     checkdocs = :exports,
     clean = true,
     doctest = true,
-    modules = [AbsentTypes],
+    modules = [NullBroadcasts],
     pages = Any["Home"=>"index.md", "API"=>"api.md", "References"=>"references.md"],
 )
 
 Documenter.deploydocs(
-    repo = "github.com/CliMA/AbsentTypes.jl.git",
+    repo = "github.com/CliMA/NullBroadcasts.jl.git",
     target = "build",
     push_preview = true,
     devbranch = "main",
