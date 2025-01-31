@@ -1,10 +1,18 @@
 name = "AbsentTypes"
-uuid = "806a83c1-d09f-449d-ab1d-4e49ad4cc0e9"
+uuid = "0d71be07-595a-4f89-9529-4065a4ab43a6"
 authors = ["CliMA Contributors <clima-software@caltech.edu>"]
 version = "0.1.0"
 
+[compat]
+Aqua = "0.8"
+Test = "1"
+LazyBroadcast = "1"
+julia = "1.8"
+
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
+LazyBroadcast = "9dccce8e-a116-406d-9fcc-a88ed4f510c8"
 
 [targets]
-test = ["Test"]
+test = ["Test", "Aqua", "LazyBroadcast"]

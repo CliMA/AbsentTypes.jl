@@ -4,12 +4,7 @@ import AbsentTypes
 bib = DocumenterCitations.CitationBibliography(joinpath(@__DIR__, "refs.bib"))
 
 mathengine = Documenter.MathJax(
-    Dict(
-        :TeX => Dict(
-            :equationNumbers => Dict(:autoNumber => "AMS"),
-            :Macros => Dict(),
-        ),
-    ),
+    Dict(:TeX => Dict(:equationNumbers => Dict(:autoNumber => "AMS"), :Macros => Dict())),
 )
 
 format = Documenter.HTML(
@@ -26,11 +21,7 @@ Documenter.makedocs(;
     clean = true,
     doctest = true,
     modules = [AbsentTypes],
-    pages = Any[
-        "Home" => "index.md",
-        "API" => "api.md",
-        "References" => "references.md",
-    ],
+    pages = Any["Home"=>"index.md", "API"=>"api.md", "References"=>"references.md"],
 )
 
 Documenter.deploydocs(
